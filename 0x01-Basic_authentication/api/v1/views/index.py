@@ -27,7 +27,7 @@ def stats() -> str:
 
 
 @app_views.route('/unauthorized/', strict_slashes=False, methods=['GET'])
-def unauthorized() -> str:
+def unauthorized_endpoint() -> None:
     """Endpoint that raises a 401 error.
 
     Returns:
@@ -37,7 +37,7 @@ def unauthorized() -> str:
 
 
 @app_views.route('/forbidden/', strict_slashes=False, methods=['GET'])
-def forbidden() -> str:
+def forbidden_endpoint() -> None:
     """Endpoint that raises a 403 error.
 
     Returns:
