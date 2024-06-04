@@ -2,11 +2,12 @@
 """ Module of Index views
 """
 from flask import jsonify, abort
+from flask.wrappers import Response
 from api.v1.views import app_views
 
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
-def status() -> str:
+def status() -> 'Response':
     """ GET /api/v1/status
     Return:
       - the status of the API
@@ -15,7 +16,7 @@ def status() -> str:
 
 
 @app_views.route('/stats/', strict_slashes=False)
-def stats() -> str:
+def stats() -> 'Response':
     """ GET /api/v1/stats
     Return:
       - the number of each objects
@@ -24,3 +25,13 @@ def stats() -> str:
     stats = {}
     stats['users'] = User.count()
     return jsonify(stats)
+
+
+@app_views.route('/unauthorized/', strict_slashes=False, methods=['GET'])
+def unauthorized_endpoint() -> None:
+    """Endpoint that raises a 401 error.
+
+    Returns:
+        None: None.
+    """
+    abort(401)
